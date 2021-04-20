@@ -1,0 +1,27 @@
+{
+  "name": "el",
+  "version": "1.0.0",
+  "description": "a small library for handling html elements",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devicetray/EL.git"
+  },
+  "keywords": [
+    "html",
+    "el",
+    "element",
+    "elements",
+    "js",
+    "javascript"
+  ],
+  "author": "devicetray",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/devicetray/EL/issues"
+  },
+  "homepage": "https://github.com/devicetray/EL#readme"
+}
