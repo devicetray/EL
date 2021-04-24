@@ -3,8 +3,14 @@
   "version": "1.0.0",
   "description": "a small library for handling html elements",
   "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc",
+    "tscw": "tsc --watch",
+    "build": "webpack",
+    "wpw": "webpack --watch",
+    "serve": "http-server"
   },
   "repository": {
     "type": "git",
@@ -23,5 +29,16 @@
   "bugs": {
     "url": "https://github.com/devicetray/EL/issues"
   },
-  "homepage": "https://github.com/devicetray/EL#readme"
+  "homepage": "https://github.com/devicetray/EL#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.168",
+    "http-server": "^0.12.3",
+    "ts-loader": "^9.0.1",
+    "typescript": "^4.2.4",
+    "webpack": "^5.34.0",
+    "webpack-cli": "^4.6.0"
+  }
 }
