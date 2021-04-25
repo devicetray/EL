@@ -15,7 +15,6 @@ function* Claw(_identifier) {
 
 //return collection within a wrapper
 function wrapCollection(_htmlCollection, _wrapParams = { tag: "div" }) {
-  console.log(_wrapParams);
   const count = _htmlCollection.length;
   let wrap = makeEl(_wrapParams.tag, {
     className: `${_wrapParams.tag}-wrap`,

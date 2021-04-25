@@ -7,7 +7,6 @@ x.append(
     style: { backgroundColor: "green", color: "yellow" },
   })
 );
-console.log(x);
 
 // new HTMLElement().appendChild
 
