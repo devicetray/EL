@@ -17,7 +17,7 @@ function* Claw(_identifier) {
 function wrapCollection(_htmlCollection, _wrapParams = { tag: "div" }) {
   const count = _htmlCollection.length;
   let wrap = makeEl(_wrapParams.tag, {
-    className: `${_wrapParams.tag}-wrap`,
+    className: "collection-wrapper",
     ..._wrapParams,
   });
 
@@ -75,9 +75,3 @@ function grab(_identifier, _wrapOptions = null) {
 }
 
 export default grab;
-
-//#region Unused
-// yield doc.getElementsByTagName(_identifier).length > 0
-//   ? { el: doc.getElementsByTagName(_identifier), type: "tag" }
-//   : null;
-//#endregion
