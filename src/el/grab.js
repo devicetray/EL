@@ -1,9 +1,14 @@
-import { makeEl } from "./make";
+//imports
+import make from "./make";
 
 //get document
 const doc = document;
 
-//create a way to test multiple conditions
+/**
+ * Generator function to search the dom for the identifier
+ * @param {*} _identifier id or class name to search for
+ * @returns found element(s) or null
+ */
 function* Claw(_identifier) {
   yield doc.getElementById(_identifier)
     ? { el: doc.getElementById(_identifier), type: "id" }
@@ -13,10 +18,15 @@ function* Claw(_identifier) {
     : null;
 }
 
-//return collection within a wrapper
+/**
+ * function to extract elements from htmlcollection into a wrapper
+ * @param {*} _htmlCollection html collection of elements
+ * @param {*} _wrapParams options to configure the wrapper; include a tag prop to specify the type of element to wrap the collection
+ * @returns elements wrapped by a parent element
+ */
 function wrapCollection(_htmlCollection, _wrapParams = { tag: "div" }) {
   const count = _htmlCollection.length;
-  let wrap = makeEl(_wrapParams.tag, {
+  let wrap = make(_wrapParams.tag ? _wrapParams.tag : "div", {
     className: "collection-wrapper",
     ..._wrapParams,
   });
@@ -27,8 +37,27 @@ function wrapCollection(_htmlCollection, _wrapParams = { tag: "div" }) {
   return wrap;
 }
 
-//full function
-function grab(_identifier, _wrapOptions = null) {
+/**
+ * pops items from collection into an array
+ * @param {*} _htmlCollection HTMLCollection object
+ * @returns array of html elements
+ */
+function arrayFromCollection(_htmlCollection) {
+  const count = _htmlCollection.length;
+  const arrayOfElements = [];
+  for (let index = 0; index < count; index++) {
+    arrayOfElements.push(_htmlCollection.item(index));
+  }
+  return arrayOfElements;
+}
+
+/**
+ * grabs elements from the dom with the specified identifier
+ * @param {*} _identifier id or class name
+ * @param {*} _wrapOptions optional wrapper around the returned (a 'make' config object w/ the tag prop included)
+ * @returns the results of the search or an element with an error message
+ */
+export default function grab(_identifier, _wrapOptions = null) {
   const claw = Claw(_identifier);
   var isCollection = false;
   var results;
@@ -44,15 +73,15 @@ function grab(_identifier, _wrapOptions = null) {
             ? fromClaw.el
             : fromClaw.type === "class" && fromClaw.el.length === 1
             ? fromClaw.el[0]
-            : _wrapOptions
+            : fromClaw.type === "class" && _wrapOptions
             ? wrapCollection(fromClaw.el, _wrapOptions)
-            : wrapCollection(fromClaw.el);
+            : arrayFromCollection(fromClaw.el);
         break;
       }
     }
 
     if (!isCollection && _wrapOptions) {
-      const singleWrap = makeEl(_wrapOptions.tag, { ..._wrapOptions });
+      const singleWrap = make(_wrapOptions.tag, { ..._wrapOptions });
       singleWrap.append(results);
       resultReturn = singleWrap;
     } else {
@@ -67,11 +96,9 @@ function grab(_identifier, _wrapOptions = null) {
       throw err;
     }
   } catch (error) {
-    return makeEl("div", {
+    return make("div", {
       innerText: `${error.message}. Check spelling or identifiers`,
       style: { backgroundColor: "red", color: "whitesmoke", width: "100%" },
     });
   }
 }
-
-export default grab;

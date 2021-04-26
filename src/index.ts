@@ -1,12 +1,6 @@
 import EL from "./el/main";
 
-const x = EL.GRAB("next");
-x.append(
-  EL.GRAB("t1", {
-    tag: "div",
-    style: { backgroundColor: "green", color: "yellow" },
-  })
-);
+console.log(EL.Grab("t1"));
 
 // new HTMLElement().appendChild
 

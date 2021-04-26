@@ -1,7 +1,7 @@
 /**
  * checks object for an object like property
- * @param {*} container o
- * @returns true if object contains an object like child
+ * @param {*} container object to check
+ * @returns true if object contains an object like child; false otherwise
  * @example var obj = {
  * a:"just a string",
  * b:{c: "nested string within b"}
@@ -10,7 +10,7 @@
  * console.log(grandObject(obj))
  * //prints true because b is an object
  */
-export function grandObject(container) {
+function grandObject(container) {
   if (typeof container === "object") {
     for (const key in container) {
       if (typeof container[key] === "object") {
@@ -22,9 +22,9 @@ export function grandObject(container) {
 }
 
 /**
- *adds properties of the config object to the conatiner 
- * @param {*} target 
- * @param {*} config 
+ * adds properties of the config object to the target object
+ * @param {*} target object to config
+ * @param {*} config key/value mapping to apply to the target
  */
 function propertyConfig(target, config) {
   if (typeof config === "object") {
@@ -45,3 +45,5 @@ function propertyConfig(target, config) {
     }
   }
 }
+
+export { grandObject, propertyConfig };

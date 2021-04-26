@@ -3,14 +3,14 @@
  */
 
 import grab from "./grab";
-import { makeEl } from "./make";
+import make from "./make";
 
 function EL() {
   return {
-    MAKE: (_tag, optionalPrams = {}) => makeEl(_tag, optionalPrams),
+    Make: (_tag, optionalConfig = null) => make(_tag, optionalConfig),
     Grab: (_identifier, _optionalWrapper = null) =>
       grab(_identifier, _optionalWrapper),
-    ENTRY: (_entryPoint = "") => entry(_entryPoint ? _entryPoint : null),
+    //ENTRY: (_entryPoint = "") => entry(_entryPoint ? _entryPoint : null),
     PARENT: (_parentNode = "") => parent(_parentNode ? _parentNode : null),
     SIBLINGS: () => siblings(),
     STYLE: (_style) => style(_style),
